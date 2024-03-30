@@ -1,0 +1,20 @@
+{
+  "name": "graphql-tut",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Mahide Hasan Anik",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.10.2",
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "graphql": "^16.8.1",
+    "nodemon": "^3.1.0"
+  }
+}
