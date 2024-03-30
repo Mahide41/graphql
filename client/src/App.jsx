@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { gql, useQuery } from "@apollo/client";
 
+const getUsers = gql`
+  query GetUsers {
+    getUsers {
+      name
+      username
+    }
+    getPosts {
+      title
+      body
+    }
+  }
+`;
 function App() {
-  const [count, setCount] = useState(0)
+  const { data, isLoading, error } = useQuery(getUsers);
+  return <>
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="container mx-5 md:mx-auto mt-5 ">
+      <h1 className="text-2xl font-bold text-gray-800 mb-10">Users list showing with Graph QL</h1>
+      {isLoading ? <>
+        <h4>Loading</h4>
+      </> : <>
+        {data?.getUsers?.map((user, index) => (
+          <div key={index} className="shadow-sm py-5 px-4 hover:bg-slate-900 hover:text-white  my-2 transition-all ease-in-out duration-300 hover:-translate-y-3">
+            <h1 className="font-medium">{user.name} <sup className="text-pretty">{user.username}</sup></h1>
+          </div>
+        ))}
+      </>}
+    </div>
+  </>;
 }
 
-export default App
+export default App;

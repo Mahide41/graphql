@@ -84,7 +84,7 @@ type Query {
      * Start the Express server on port 8000 and log the server start message
      */
     app.listen({ port: 8000 }, () => {
-        console.log(`��� Server ready at http://localhost:8000/graphql`);
+        console.log(`🚀 Server ready at http://localhost:8000/graphql`);
     });
 }
 
